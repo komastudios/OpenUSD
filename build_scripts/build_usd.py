@@ -679,7 +679,7 @@ def AnyPythonDependencies(deps):
 ############################################################
 # zlib
 
-ZLIB_URL = "https://github.com/madler/zlib/archive/v1.2.13.zip"
+ZLIB_URL = "https://ftp.mirror.koma.systems/pub/zlib-1.2.13.zip"
 
 def InstallZlib(context, force, buildArgs):
     with CurrentWorkingDirectory(DownloadURL(ZLIB_URL, context, force)):
@@ -745,13 +745,13 @@ def InstallBoost_Helper(context, force, buildArgs):
     pyInfo = GetPythonInfo(context)
     pyVer = (int(pyInfo[3].split('.')[0]), int(pyInfo[3].split('.')[1]))
     if MacOS() or (context.buildPython and pyVer >= (3,11)):
-        BOOST_URL = "https://boostorg.jfrog.io/artifactory/main/release/1.82.0/source/boost_1_82_0.zip"
+        BOOST_URL = "https://ftp.mirror.koma.systems/pub/boost_1_82_0.zip"
     elif context.buildPython and pyVer >= (3, 10):
-        BOOST_URL = "https://boostorg.jfrog.io/artifactory/main/release/1.78.0/source/boost_1_78_0.zip"
+        BOOST_URL = "https://ftp.mirror.koma.systems/pub/boost_1_78_0.zip"
     elif IsVisualStudio2022OrGreater():
-        BOOST_URL = "https://boostorg.jfrog.io/artifactory/main/release/1.78.0/source/boost_1_78_0.zip"
+        BOOST_URL = "https://ftp.mirror.koma.systems/pub/boost_1_78_0.zip"
     else:
-        BOOST_URL = "https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.zip"
+        BOOST_URL = "https://ftp.mirror.koma.systems/pub/boost_1_76_0.zip"
 
     # Documentation files in the boost archive can have exceptionally
     # long paths. This can lead to errors when extracting boost on Windows,
@@ -951,7 +951,7 @@ BOOST = Dependency("boost", InstallBoost, *BOOST_VERSION_FILES)
 ############################################################
 # Intel oneTBB
 
-ONETBB_URL = "https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2021.9.0.zip"
+ONETBB_URL = "https://ftp.mirror.koma.systems/pub/oneTBB-v2021.9.0.zip"
 
 def InstallOneTBB(context, force, buildArgs):
     with CurrentWorkingDirectory(DownloadURL(ONETBB_URL, context, force)):
@@ -965,17 +965,17 @@ ONETBB = Dependency("oneTBB", InstallOneTBB, "include/oneapi/tbb.h")
 # Intel TBB
 
 if Windows():
-    TBB_URL = "https://github.com/oneapi-src/oneTBB/releases/download/v2020.3/tbb-2020.3-win.zip"
+    TBB_URL = "https://ftp.mirror.koma.systems/pub/tbb-2020.3-win.zip"
     TBB_ROOT_DIR_NAME = "tbb"
 elif MacOS():
     # On MacOS Intel systems we experience various crashes in tests during
     # teardown starting with 2018 Update 2. Until we figure that out, we use
     # 2018 Update 1 on this platform.
-    TBB_URL = "https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2020.3.zip"
-    TBB_INTEL_URL = "https://github.com/oneapi-src/oneTBB/archive/refs/tags/2018_U1.zip"
+    TBB_URL = "https://ftp.mirror.koma.systems/pub/oneTBB-v2020.3.zip"
+    TBB_INTEL_URL = "https://ftp.mirror.koma.systems/pub/oneTBB-2018_U1.zip"
 else:
     # Use point release with fix https://github.com/oneapi-src/oneTBB/pull/833
-    TBB_URL = "https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2020.3.1.zip"
+    TBB_URL = "https://ftp.mirror.koma.systems/pub/oneTBB-v2020.3.1.zip"
 
 def InstallTBB(context, force, buildArgs):
     if Windows():
@@ -1139,7 +1139,7 @@ TBB = Dependency("TBB", InstallTBB, "include/tbb/tbb.h")
 ############################################################
 # JPEG
 
-JPEG_URL = "https://github.com/libjpeg-turbo/libjpeg-turbo/archive/2.0.1.zip"
+JPEG_URL = "https://ftp.mirror.koma.systems/pub/libjpeg-turbo-2.0.1.zip"
 
 def InstallJPEG(context, force, buildArgs):
     with CurrentWorkingDirectory(DownloadURL(JPEG_URL, context, force)):
@@ -1155,7 +1155,7 @@ JPEG = Dependency("JPEG", InstallJPEG, "include/jpeglib.h")
 ############################################################
 # TIFF
 
-TIFF_URL = "https://gitlab.com/libtiff/libtiff/-/archive/v4.0.7/libtiff-v4.0.7.zip"
+TIFF_URL = "https://ftp.mirror.koma.systems/pub/libtiff-v4.0.7.zip"
 
 def InstallTIFF(context, force, buildArgs):
     with CurrentWorkingDirectory(DownloadURL(TIFF_URL, context, force)):
@@ -1187,7 +1187,7 @@ TIFF = Dependency("TIFF", InstallTIFF, "include/tiff.h")
 ############################################################
 # PNG
 
-PNG_URL = "https://github.com/glennrp/libpng/archive/refs/tags/v1.6.38.zip"
+PNG_URL = "https://ftp.mirror.koma.systems/pub/libpng-v1.6.38.zip"
 
 def InstallPNG(context, force, buildArgs):
     with CurrentWorkingDirectory(DownloadURL(PNG_URL, context, force)):
@@ -1209,7 +1209,7 @@ PNG = Dependency("PNG", InstallPNG, "include/png.h")
 ############################################################
 # IlmBase/OpenEXR
 
-OPENEXR_URL = "https://github.com/AcademySoftwareFoundation/openexr/archive/refs/tags/v3.1.11.zip"
+OPENEXR_URL = "https://ftp.mirror.koma.systems/pub/openexr-v3.1.11.zip"
 
 def InstallOpenEXR(context, force, buildArgs):
     with CurrentWorkingDirectory(DownloadURL(OPENEXR_URL, context, force)):
@@ -1229,7 +1229,7 @@ OPENEXR = Dependency("OpenEXR", InstallOpenEXR, "include/OpenEXR/ImfVersion.h")
 ############################################################
 # Ptex
 
-PTEX_URL = "https://github.com/wdas/ptex/archive/refs/tags/v2.4.2.zip"
+PTEX_URL = "https://ftp.mirror.koma.systems/pub/ptex-v2.4.2.zip"
 PTEX_VERSION = "v2.4.2"
 
 def InstallPtex(context, force, buildArgs):
@@ -1253,7 +1253,7 @@ PTEX = Dependency("Ptex", InstallPtex, "include/PtexVersion.h")
 # Using blosc v1.20.1 to avoid build errors on macOS Catalina (10.15)
 # related to implicit declaration of functions in zlib. See:
 # https://github.com/Blosc/python-blosc/issues/229
-BLOSC_URL = "https://github.com/Blosc/c-blosc/archive/v1.20.1.zip"
+BLOSC_URL = "https://ftp.mirror.koma.systems/pub/c-blosc-v1.20.1.zip"
 
 def InstallBLOSC(context, force, buildArgs):
     with CurrentWorkingDirectory(DownloadURL(BLOSC_URL, context, force)):
@@ -1268,13 +1268,13 @@ BLOSC = Dependency("Blosc", InstallBLOSC, "include/blosc.h")
 ############################################################
 # OpenVDB
 
-OPENVDB_URL = "https://github.com/AcademySoftwareFoundation/openvdb/archive/refs/tags/v9.1.0.zip"
+OPENVDB_URL = "https://ftp.mirror.koma.systems/pub/openvdb-v9.1.0.zip"
 
 # OpenVDB v9.1.0 requires TBB 2019.0 or above, but this script installs
 # TBB 2018 on macOS Intel systems for reasons documented above. So we
 # keep OpenVDB at the version specified for the VFX Reference Platform
 # CY2021, which is the last version that supported 2018.
-OPENVDB_INTEL_URL = "https://github.com/AcademySoftwareFoundation/openvdb/archive/refs/tags/v8.2.0.zip"
+OPENVDB_INTEL_URL = "https://ftp.mirror.koma.systems/pub/openvdb-v8.2.0.zip"
 
 def InstallOpenVDB(context, force, buildArgs):
     openvdb_url = OPENVDB_URL
@@ -1311,7 +1311,7 @@ OPENVDB = Dependency("OpenVDB", InstallOpenVDB, "include/openvdb/openvdb.h")
 ############################################################
 # OpenImageIO
 
-OIIO_URL = "https://github.com/OpenImageIO/oiio/archive/refs/tags/v2.3.21.0.zip"
+OIIO_URL = "https://ftp.mirror.koma.systems/pub/oiio-v2.3.21.0.zip"
 
 def InstallOpenImageIO(context, force, buildArgs):
     with CurrentWorkingDirectory(DownloadURL(OIIO_URL, context, force)):
@@ -1364,7 +1364,7 @@ OPENIMAGEIO = Dependency("OpenImageIO", InstallOpenImageIO,
 ############################################################
 # OpenColorIO
 
-OCIO_URL = "https://github.com/AcademySoftwareFoundation/OpenColorIO/archive/refs/tags/v2.1.3.zip"
+OCIO_URL = "https://ftp.mirror.koma.systems/pub/OpenColorIO-v2.1.3.zip"
 
 def InstallOpenColorIO(context, force, buildArgs):
     with CurrentWorkingDirectory(DownloadURL(OCIO_URL, context, force)):
@@ -1390,7 +1390,7 @@ OPENCOLORIO = Dependency("OpenColorIO", InstallOpenColorIO,
 ############################################################
 # OpenSubdiv
 
-OPENSUBDIV_URL = "https://github.com/PixarAnimationStudios/OpenSubdiv/archive/v3_6_0.zip"
+OPENSUBDIV_URL = "https://ftp.mirror.koma.systems/pub/OpenSubdiv-v3.6.0.zip"
 
 def InstallOpenSubdiv(context, force, buildArgs):
     with CurrentWorkingDirectory(DownloadURL(OPENSUBDIV_URL, context, force)):
@@ -1464,7 +1464,7 @@ PYSIDE = PythonDependency("PySide", GetPySideInstructions,
 ############################################################
 # HDF5
 
-HDF5_URL = "https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-1.10.0-patch1/src/hdf5-1.10.0-patch1.zip"
+HDF5_URL = "https://ftp.mirror.koma.systems/pub/hdf5-1.10.0-patch1.zip"
 
 def InstallHDF5(context, force, buildArgs):
     with CurrentWorkingDirectory(DownloadURL(HDF5_URL, context, force)):
@@ -1486,7 +1486,7 @@ HDF5 = Dependency("HDF5", InstallHDF5, "include/hdf5.h")
 ############################################################
 # Alembic
 
-ALEMBIC_URL = "https://github.com/alembic/alembic/archive/refs/tags/1.8.5.zip"
+ALEMBIC_URL = "https://ftp.mirror.koma.systems/pub/alembic-1.8.5.zip"
 
 def InstallAlembic(context, force, buildArgs):
     with CurrentWorkingDirectory(DownloadURL(ALEMBIC_URL, context, force)):
@@ -1510,7 +1510,7 @@ ALEMBIC = Dependency("Alembic", InstallAlembic, "include/Alembic/Abc/Base.h")
 ############################################################
 # Draco
 
-DRACO_URL = "https://github.com/google/draco/archive/refs/tags/1.3.6.zip"
+DRACO_URL = "https://ftp.mirror.koma.systems/pub/draco-1.3.6.zip"
 
 def InstallDraco(context, force, buildArgs):
     with CurrentWorkingDirectory(DownloadURL(DRACO_URL, context, force)):
@@ -1525,7 +1525,7 @@ DRACO = Dependency("Draco", InstallDraco, "include/draco/compression/decode.h")
 ############################################################
 # MaterialX
 
-MATERIALX_URL = "https://github.com/materialx/MaterialX/archive/v1.38.10.zip"
+MATERIALX_URL = "https://ftp.mirror.koma.systems/pub/MaterialX-v1.38.10.zip"
 
 def InstallMaterialX(context, force, buildArgs):
     with CurrentWorkingDirectory(DownloadURL(MATERIALX_URL, context, force)):
@@ -1549,9 +1549,9 @@ MATERIALX = Dependency("MaterialX", InstallMaterialX, "include/MaterialXCore/Lib
 # For MacOS we use version 3.13.3 to include a fix from Intel
 # to build on Apple Silicon.
 if MacOS():
-    EMBREE_URL = "https://github.com/embree/embree/archive/v3.13.3.zip"
+    EMBREE_URL = "https://ftp.mirror.koma.systems/pub/embree-v3.13.3.zip"
 else:
-    EMBREE_URL = "https://github.com/embree/embree/archive/v3.2.2.zip"
+    EMBREE_URL = "https://ftp.mirror.koma.systems/pub/embree-v3.2.2.zip"
 
 def InstallEmbree(context, force, buildArgs):
     with CurrentWorkingDirectory(DownloadURL(EMBREE_URL, context, force)):
@@ -1577,7 +1577,7 @@ EMBREE = Dependency("Embree", InstallEmbree, "include/embree3/rtcore.h")
 
 # This GitHub project has no releases, so we fixed on the latest commit as of
 # 2024-02-06 - 5db8ee4, which was committed on 2018-11-05
-ANIMX_URL = "https://github.com/Autodesk/animx/archive/5db8ee416d5fa7050357f498d4dcfaa6ff3f7738.zip"
+ANIMX_URL = "https://ftp.mirror.koma.systems/pub/animx-20181105-5db8ee4.zip"
 
 def InstallAnimX(context, force, buildArgs):
     with CurrentWorkingDirectory(DownloadURL(ANIMX_URL, context, force)):
